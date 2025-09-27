@@ -1,5 +1,6 @@
+                                      Part 1 Variables
+----------------------------------------------------------------------------------------------------
 #region Variables
-
 /*
 Variables
 string str = "ABCD";
@@ -8,12 +9,10 @@ bool b = true;
 
 Console.WriteLine(str);
 
-
 //Numrics 
 int x = 5;
 long y = 5555555555555555;
 x = 7;
-
 
 float f = 5.5f;//smallest
 double d = 5.5;
@@ -21,12 +20,13 @@ decimal dec = 5.5m;//largest
 
 Console.WriteLine("float : + f"); //ctrl+D نسخ للسطر الاسفل
                                   //Line للطباعه بسطر جديد
-
 //Constants
 const double PI = 3.14f; //لا يمكن التعديل على القيمة
                          //PI = 3.15; //Error  */
 #endregion
-
+----------------------------------------------------------------------------------------------------
+                                    Part 2 Casting
+----------------------------------------------------------------------------------------------------
 #region Casting 
 /*
 // تحويل بين ال data types
@@ -66,7 +66,9 @@ bool bol2 = bool.TryParse(str2, out bol2); // او bool.TryParse(str2, out bool 
 */
 
 #endregion
-
+----------------------------------------------------------------------------------------------------
+                                Part 3 Var,dynamic,Object
+----------------------------------------------------------------------------------------------------
 #region Var,dynamic,Object
 /*
 
@@ -98,7 +100,9 @@ Console.WriteLine((int)obj + 5); //مسموح اذا حولنا الاوبجيك
 */
 
 #endregion
-
+----------------------------------------------------------------------------------------------------
+                                Part 4 Execption Handling
+----------------------------------------------------------------------------------------------------
 #region Exceptions Handling
 /*
 try
@@ -131,7 +135,9 @@ finally {
 */
 
 #endregion
-
+----------------------------------------------------------------------------------------------------
+                                    Part 5 If Statments
+----------------------------------------------------------------------------------------------------
 #region If Statement
 
 int x = 10;
@@ -161,22 +167,7 @@ switch (day)
 var message = x > y ? "x is greater than y" : x==y ? "x and y are equals" : "x is less than y"; //Ternary Operator
 
 #endregion
-
-#region Excercise
-
-Console.WriteLine("Enter your name: ");
-var name = Console.ReadLine();
-
-Console.WriteLine("Enter your age: ");
-var agestr = Console.ReadLine();
-
-Console.WriteLine("Enter your salary: ");
-var sala = Console.ReadLine();
-
-
-int age = int.Parse(agestr);
-decimal salary = decimal.Parse(sala);
+----------------------------------------------------------------------------------------------------
 
 
 
-#endregion
