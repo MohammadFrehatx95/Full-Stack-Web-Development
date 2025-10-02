@@ -1,0 +1,139 @@
+#region OOP
+// class --> مخطط
+// object --> هو تنفيذ لهذا المخطط
+using System.Xml.Linq;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Employee emp; // Declartion حجز المكان في الذاكرة
+        // emp = new Employee();// Initialization التهيئة
+        //Employee emp = new Employee();
+        Employee emp = new Employee("Mohammad", 22, 400);
+        Employee emp2 = new Employee("Osama", 32, 300);
+        Developer dev = new Developer("Jamal",22, 500 ,"Asp.net");
+        //dev.Name = "Jamal";
+
+        //emp.name = "Mohammad"; // write 
+        //emp.age = 22; // write
+        //emp.SetAge(22);
+        // emp.Id = 5;
+
+        //emp.Name = "Mohammad";
+        //emp.Age = 30;
+        //Console.WriteLine(emp.Name + " " + emp.Age);
+
+        //emp.Salary = 400; it's private property so u can't use it.
+
+        Console.WriteLine(emp.Name + " : " + emp.Age + " : " + emp.Id);
+        Console.WriteLine(emp2.Name + " : " + emp2.Age + " : " + emp2.Id);
+
+        emp.GreetMessage();
+        //emp2.GreetMessage();
+        //dev.GreetMessage();
+        Console.WriteLine(dev.AnuualSalary());
+
+    }
+}
+public class Employee // 20 Employee for example --> 20 object
+{
+    // Constructor :  1. method inside class and it's special
+    // 2. first method execute in the class
+    // 3. if u don't initlize a Constructor c# make one but hidden
+    public Employee(string name,int age,decimal salary)
+    {
+        Name = name;
+        Age = age;
+        Random random = new Random();
+        //Id = random.Next(); // 0 --> int max size
+        //Id = random.Next(100); // 0 ---> 100
+        Id = random.Next(0,100);
+        Salary = salary;
+    }
+
+    // Properties(name,age,Exp,Title)
+    //public long Id { get; set;} // identifer for every employee
+    //public long Id { get;} = 22;
+    public long Id { get; }
+    protected decimal Salary { get; set; }
+
+    private int age;  //  i can use private in main with property & method if both public
+
+    public string Name { get; set; } // Auto Property
+    // c# initlize a hidden variable --> auto property
+
+    public int Age // Property --> 1. get  2. set
+    {
+        get
+        {
+            return age;
+        }
+        set
+        {
+            if(value > 0)
+            {
+                age = value;
+            }
+        }
+    }
+
+    // Methods(work,meetings)
+
+    /*public void SetAge(int age) //Write
+    {
+        if (age > 0)
+        {
+            this.age = age;
+        }
+    }
+
+    public int GetAge() //Read
+    {
+        return age;
+    }
+    */
+
+    public void GreetMessage()
+    {
+        Console.WriteLine($"Hello, My Name Is {Name}, My Age Is {Age} And My Salary Is {Salary}");
+    }
+}
+
+public sealed class Developer : Employee // 1. : --> mean extends
+{                                        // 2. sealed -->  prevent Inherit
+                                         // 3. You Cannot Use Private After Inherit
+    public Developer(string name,int age,decimal salary, string framework) : base(name,age,salary)
+    {
+        Framework = framework;
+    }
+
+    public string Framework { get; set; }
+
+    public string AnuualSalary()
+    {
+        var annualSalary = Salary * 12;
+        return $"{Name}'s Anuual Salary is ${annualSalary}";
+    }
+}
+
+
+// OOP: 
+// 1. encapsulation احتفظ بالمعلومات داخل الكلاس بس "private"
+// 2. inheritance الوراثة extends from class to another class
+// parent & child
+// important /!\ parent can have many childs, but child cannot have many parents ^_^
+
+//Access Modifiers 
+// 1. public --> access from anywhere
+// 2. private --> access from same class only
+// 3. protected --> access from same class & inherit class
+
+//Default Values
+// int --> 0
+// double --> 0.0
+// bool --> false
+// string --> null
+// object --> null
+#endregion
+
