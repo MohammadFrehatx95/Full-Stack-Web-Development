@@ -1,0 +1,62 @@
+using System.Diagnostics.Metrics;
+
+public class Program
+{
+    public static void Main()
+    {
+        Car car = new Car("Toyota","Corolla","2020",15000);
+        ElectricCar electricCar = new ElectricCar("Tesla","Model S", "2023" , 80000, 100);
+
+        car.CarInfo();
+        electricCar.CarInfo();
+
+        electricCar.Charge();
+        Console.WriteLine(electricCar.AnnualTax());
+
+    }
+}
+public class Car
+{
+    public Car(string brand, string model, string year, decimal price)
+    {
+        Brand = brand;
+        Model = model;
+        Year = year;
+        Price = price;
+        Random random = new Random();
+        Id = random.Next(1, 100);
+    }
+
+    public long Id { get; }
+    public string Brand {  get; set; }
+    public string Model { get; set; }
+    public string Year { get; set; }
+    protected decimal Price { get; set; }
+
+    public void CarInfo()
+    {
+        Console.WriteLine($"Car Id: {Id} Brand: {Brand} Model: {Model} Year: {Year} Price: {Price}");
+    }
+}
+
+public class ElectricCar : Car
+{
+    public ElectricCar(string brand, string model, string year, decimal price, int batteryCapacity) : base(brand, model, year, price) 
+    {
+       BatteryCapacity = batteryCapacity;
+    }
+
+    public int BatteryCapacity {  get; set; }
+
+    public void Charge()
+    {
+        Console.WriteLine($"Car {Brand} is Charging");
+
+    }
+
+    public string AnnualTax()
+    {
+        var annualTax = Price * 0.1m;
+        return $"{Brand} AnuualTax is {annualTax}";
+    }
+}
