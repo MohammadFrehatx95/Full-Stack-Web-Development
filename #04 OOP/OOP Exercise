@@ -52,7 +52,7 @@ public class SUV : Vehicle, IInfoDisplay
 
     public override decimal CalculateTotalPrice()
     {
-        var totalPrice = ((BasePrice - 5) * Hours);
+        var totalPrice = ((BasePrice + 10) * Hours);
         return totalPrice;
     }
 
