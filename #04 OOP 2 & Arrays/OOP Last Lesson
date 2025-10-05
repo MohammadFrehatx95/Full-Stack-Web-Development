@@ -1,0 +1,243 @@
+#region OOP
+// class --> مخطط
+// object --> هو تنفيذ لهذا المخطط
+public class Program
+{
+    public static void Main()
+    {
+        // Employee emp; // Declartion حجز المكان في الذاكرة
+        // emp = new Employee();// Initialization التهيئة
+        //Employee emp = new Employee();
+        Employee emp = new Employee("Mohammad", 22, 400);
+        Employee emp2 = new Employee("Osama", 32, 300);
+        Employee dev = new Developer("Jamal", 22, 500, "Asp.net"); // polymorthism
+        //dev.Name = "Jamal";
+
+        //emp.name = "Mohammad"; // write 
+        //emp.age = 22; // write
+        //emp.SetAge(22);
+        // emp.Id = 5;
+
+        //emp.Name = "Mohammad";
+        //emp.Age = 30;
+        //Console.WriteLine(emp.Name + " " + emp.Age);
+
+        //emp.Salary = 400; it's private property so u can't use it.
+
+        //Console.WriteLine(emp.Name + " : " + emp.Age + " : " + emp.Id);
+        // Console.WriteLine(emp2.Name + " : " + emp2.Age + " : " + emp2.Id);
+
+        //emp.GreetMessage();
+        //emp2.GreetMessage();
+        //dev.GreetMessage();
+        // Console.WriteLine(dev.AnuualSalary());
+
+        //emp.Description();
+        //dev.Description();
+
+        // IManager manager = new IManager();// You can't ini object
+        // IManager man = new Manager("koko",20,5000); // Interface with class like inherit (polymorthism) :D
+
+        //Operations oper = new Operations(); // without static
+        //oper.Add(5,15); // without static
+
+
+       // Operations.Add(5, 15); // 1. with static {ClassName} directly. ( ما بزبط تناديها باسم الاوبجكت صاارت للكلاس بس)
+       Operations opr = new Operations(); 
+       Operations opr2 = new Operations();
+
+        //opr.Counter += 1;
+        //Console.WriteLine(opr.Counter); //  1
+        //Console.WriteLine(opr2.Counter); // 0
+
+       // opr.IncremeantCounter();
+       //  opr2.IncremeantCounter();
+       // Console.WriteLine(Operations.Counter); //2
+
+
+}
+}
+public class Employee // 20 Employee for example --> 20 object
+{
+    // Constructor :  1. method inside class and it's special
+    // 2. first method execute in the class
+    // 3. if u don't initlize a Constructor c# make one but hidden
+    public Employee(string name, int age, decimal salary)
+    {
+        Name = name;
+        Age = age;
+        Random random = new Random();
+        //Id = random.Next(); // 0 --> int max size
+        //Id = random.Next(100); // 0 ---> 100
+        Id = random.Next(0, 100);
+        Salary = salary;
+    }
+
+    // Properties(name,age,Exp,Title)
+    //public long Id { get; set;} // identifer for every employee
+    //public long Id { get;} = 22;
+    public long Id { get; }
+    protected decimal Salary { get; set; }
+
+    private int age;  //  i can use private in main with property & method if both public
+
+    public string Name { get; set; } // Auto Property
+    // c# initlize a hidden variable --> auto property
+
+    public int Age // Property --> 1. get  2. set
+    {
+        get
+        {
+            return age;
+        }
+        set
+        {
+            if (value > 0)
+            {
+                age = value;
+            }
+        }
+    }
+
+    // Methods(work,meetings)
+
+    /*public void SetAge(int age) //Write
+    {
+        if (age > 0)
+        {
+            this.age = age;
+        }
+    }
+
+    public int GetAge() //Read
+    {
+        return age;
+    }
+    */
+
+    public void GreetMessage()
+    {
+        Console.WriteLine($"Hello, My Name Is {Name}, My Age Is {Age} And My Salary Is {Salary}");
+    }
+
+
+    // virtual --> Overridable متوقع
+    public virtual void Description()
+    {
+        Console.WriteLine("This class is for All Employees");
+    }
+}
+
+public class Operations
+{
+    public static int Counter { get; set; } = 0;
+
+    public void IncremeantCounter() // u can use method to edit property value.
+    {
+        Counter++;
+    }
+
+    public static int Add(int x, int y)
+    {
+        return x + y;
+    }
+
+}
+
+
+public sealed class Developer : Employee // 1. : --> mean extends
+{                                        // 2. sealed -->  prevent Inherit
+                                         // 3. You Cannot Use Private After Inherit
+    public Developer(string name, int age, decimal salary, string framework) : base(name, age, salary)
+    {
+        Framework = framework;
+    }
+
+    public string Framework { get; set; }
+
+    public string AnuualSalary()
+    {
+        var annualSalary = Salary * 12;
+        return $"{Name}'s Anuual Salary is ${annualSalary}";
+    }
+
+    //overriding method
+    public override void Description()
+    {
+        Console.WriteLine("This class is for All Developers");
+    }
+
+
+
+}
+
+//Employee : extends
+//IManager : Implementing
+
+public sealed class Manager : Employee, IManager, IEmployee
+{
+    public Manager(string name, int age, decimal salary) : base(name, age, salary)
+    {
+        
+    }
+
+    public string Team { get; set; }
+    public int TeamSize {  get; set; }
+    public string ConductMeetingWithTeam()
+    {
+        return $"Manager {Name} is conducting a meeting with {Team}";
+    }
+}
+public interface IManager
+{
+    // 1. can't make object from IManger
+    // 2. public only .. 
+   
+    string Team { get; set; } // 3. in interface you cannot assign value in Property...
+    int TeamSize { get; set; }
+
+    string ConductMeetingWithTeam(); // 4. only method signture you cannot write in body....
+    // You Can do default implemantion in method in c# 
+    // and u can use it in class only when you use Imanger with obj :D
+}
+
+public interface IEmployee // you can imp more than one interface...
+{ 
+}
+
+// OOP: 
+// 1. encapsulation احتفظ بالمعلومات داخل الكلاس بس ("private")
+// 2. inheritance الوراثة extends from class to another class
+// parent & child
+// important /!\ parent can have many childs, but child cannot have many parents ^_^
+
+//Access Modifiers 
+// 1. public --> access from anywhere
+// 2. private --> access from same class only
+// 3. protected --> access from same class & inherit class
+
+//Default Values
+// int --> 0
+// double --> 0.0
+// bool --> false
+// string --> null
+// object --> null
+
+//OOP:
+// 3. Polymorthism --> // overloading // overriding
+// overriding هو مثود معرف بكلاس اب  بدي ارجع اعيد تعريفها داخل كلاس ابن
+// overloading نفس الميثود بنفس الكلاس كل مره باجي اعدل على السقنجر تاعها
+// overloading --> changing signture.
+// overriding --> same signture, changing only body.
+
+// 4. abstraction --> // interface //abstract class
+// interface --> deal class with other class  
+// abstract class -- >  abstract بطل كلاس فعليا فما بتقدر تعمل منه اوبجكت
+// اي اشي ابستراكت داخل الكلاس لازم تعرفه بالكلاس الوارث منه الابن
+
+// method hiding --> use new to hide method when 2 method in same name.
+
+// static  1. with methods : make method only to class not for object
+// 2. with variables: save the pervious values and share it with group of objects
+// 3. with class: everything in static class must be static & you cannot init a object & cannot inheritance
+#endregion
