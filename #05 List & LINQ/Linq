@@ -1,0 +1,61 @@
+#region Linq
+public class Program
+{
+    public static void Main()
+    {
+        var grades = new List<int> { 45, 68, 95, 42, 55, 23, 78, 88, 32 };
+        var passedGrades = new List<int>(); // Empty list for passing grades
+
+        foreach(var grade in grades) // looping through grades 
+        {
+            if(grade > 50) // Filtering Grades
+            {
+                passedGrades.Add(grade); // Selecting Grade
+            }
+        }
+        //Data manipulation:
+        //Modifying or transforming data so that it becomes more organized, understandable, and useful
+
+        //Display(passedGrades);
+
+        //Linq --> Language Integrated Query
+        // Query Syntax
+        // IEnumerable --> mean it's read only you can't edit anything --> like add new elements 
+        var lstPassedGrades = (from grade in passedGrades // looping through grades
+                              where grade > 50 // Filter
+                               orderby grade // Sort Grades
+                              select $"Grade : {grade}").ToList(); // Selecting Grade
+
+        //Display(lstPassedGrades.ToList());
+        //Display(lstPassedGrades);
+
+
+        // Method Syntax
+        var lstGradesMth = grades.Where(x => x > 50) // Filter Grades
+                          .OrderByDescending(x => x) // Sort Grades
+                          .Select(x => $"Grade : {x}"); // Select Grade
+
+        Display(lstGradesMth.ToList());
+
+        //Console.WriteLine(BiggerThan50(90)); 
+
+    }
+    public bool IsBiggerThan50(int x)
+    {
+        return BiggerThan50(90);
+    }
+
+    // lambda Experssion (=>)
+    static Func<int, bool> BiggerThan50 = x => x > 50;
+    // u can't use func in main if u don't make it static
+
+    public static void Display <T>(List<T> list) //Generic Type <T> -- Accept any Data Type
+    {
+        foreach(var item in list)
+        {
+            Console.WriteLine(item);
+        }
+        
+    }
+}
+#endregion 
