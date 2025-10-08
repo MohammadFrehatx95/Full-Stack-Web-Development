@@ -1,0 +1,39 @@
+public class Program
+{
+    public static void Main()
+    {
+
+        var products = new List<Product>()
+        {
+           new Product { Name = "Laptop", Category = "Electronics", Price = 29.99m, IsListed = true },
+           new Product { Name = "Smartphone", Category = "Electronics", Price = 800.00m, IsListed = true },
+           new Product { Name = "TV", Category = "Electronics", Price = 450.00m, IsListed = false },
+           new Product { Name = "Table", Category = "Furniture", Price = 200.00m, IsListed = true },
+           new Product { Name = "Headphones", Category = "Electronics", Price = 90.00m, IsListed = true }
+        };
+
+        // Query Syntax
+        var lstProduct = from product in products
+                         where product.Category == "Electronics" && product.IsListed
+                         orderby product.Price descending
+                         select $"Product Name: {product.Name}, Product Price: {product.Price}";
+
+        Display(lstProduct.ToList());
+    }
+    public static void Display<T>(List<T> list)
+    {
+        foreach (T item in list)
+        {
+            Console.WriteLine(item);
+        }
+    }
+} 
+
+public class Product
+{
+    public string Name { get; set; }
+    public string Category { get; set; }
+    public Decimal Price { get; set; }
+    public bool IsListed { get; set; }
+
+}
