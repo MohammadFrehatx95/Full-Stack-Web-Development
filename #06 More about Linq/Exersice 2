@@ -5,7 +5,7 @@ public class Program
 
         var products = new List<Product>()
         {
-           new Product { Name = "Laptop", Category = "Electronics", Price = 29.99m, IsListed = true },
+           new Product { Name = "Laptop", Category = "Electronics", Price = 1200.00m, IsListed = true },
            new Product { Name = "Smartphone", Category = "Electronics", Price = 800.00m, IsListed = true },
            new Product { Name = "TV", Category = "Electronics", Price = 450.00m, IsListed = false },
            new Product { Name = "Table", Category = "Furniture", Price = 200.00m, IsListed = true },
