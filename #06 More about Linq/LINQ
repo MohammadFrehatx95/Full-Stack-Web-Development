@@ -1,0 +1,46 @@
+public class Program
+{
+    public static void Main()
+    {
+
+        var students = new List<Student>()
+        {
+
+            new Student (){ Name = "Mohammad", Age = 21,Grade = 85.5m},  //Name of object is index ...> 0
+            new Student (){ Name = "Ali", Age = 22,Grade = 75.1m},
+            new Student (){ Name = "Eman", Age = 22,Grade = 90.2m},
+            new Student (){ Name = "Ahmad", Age = 23,Grade = 60m}
+
+        };
+
+        //Query Syntax **********
+        var lstpassed = from student in students
+                        where student.Grade > 50 || student.Age > 22  //sudents //Error //because its object not necessary to be int
+                        orderby student.Grade
+                        select $"Student Name {student.Name} Age : {student.Age} Grade : {student.Grade} "; //if select student ...> return all object
+
+        Display(lstpassed.ToList());
+
+        //Method Syntax **********
+        var lstpassedMth = students.Where(x => (x.Grade > 50 && x.Age > 22) || x.Age < 25)
+                           .OrderByDescending(x => x.Grade)
+                           .Select(x => $"Student Name {x.Name} Age : {x.Age} Grade : {x.Grade}");
+
+    }
+    public static void Display<T>(List<T> list)  //Generic Method   //T ...> Thing  //List<T> ...> List of Things //T ...> any data type
+    {
+
+        foreach (var item in list)
+        {
+            Console.WriteLine(item);
+        }
+
+    }
+} 
+
+public class Student
+{
+  public string Name { get; set; }
+  public int Age { get; set; }
+  public decimal Grade { get; set; }
+}
