@@ -1,0 +1,29 @@
+#region Homework2
+public class Exercise
+{
+    public static void Main()
+    {
+        int evenCounter = 0;
+
+        Console.WriteLine("Please Enter Your Start Point To Calc Even Numbers Count?");
+        int start = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Please Enter Your End Point To Calc Even Numbers Count?");
+        int end = int.Parse(Console.ReadLine());
+
+        EvenNumber(ref evenCounter, start ,end);
+
+Console.WriteLine($"The Even Number Counter is: {evenCounter}");
+    }
+    public static void EvenNumber(ref int evenCounter, int start, int end)
+    {
+        for (var i = start; i <= end; i++)
+        {
+            if(i % 2 == 0)
+            {
+                evenCounter++;
+            }
+        }
+    }
+}
+#endregion 
