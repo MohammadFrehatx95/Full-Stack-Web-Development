@@ -1,0 +1,53 @@
+#region List
+public class Program
+{
+    public static void Main()
+    {
+        
+        //var numbers = new List<int>() { 1, 2, 3 }; // list of int (Dynamic Size)
+        // Console.WriteLine(numbers[0]);  --> 1                                     
+        //numbers[0] = 55; // Write
+
+        //numbers.Add(12); // Add
+        //numbers.Remove(3); // Remove element by value 
+
+        //numbers.RemoveAt(0); // Remove element by index
+        //numbers.Clear(); // List Will be empty
+
+        //numbers.Add(11);
+        //numbers.Add(22);
+        //numbers.Add(33);
+
+        //for (int i = 0; i < numbers.Count; i++) 
+        // in array we use arrName.length but in list we use listName.Count
+        //{
+        //    Console.WriteLine(numbers[i]);
+        //}
+
+        //var numbers2 = new List<int>();
+        //foreach (var item in numbers) // foreach -> for arrays & lists
+        // foreach --> Read Only
+        //{
+        //    //item = 25; you can't edit in same list
+        //    //numbers.Add(item); Collection was modified execption handling :D
+
+        //    numbers2.Add(item); // u can add in another list (copy)
+        //    Console.WriteLine(item);
+        //}
+
+        var numbers = new List<int>() { 1, 2, 3 };
+        var numbersStr = new List<string>() { "1", "2", "3" };
+
+        Display(numbers);
+        Display(numbersStr);
+    }
+    public static void Display <T>(List<T> list) //Generic Type <T> -- Accept any Data Type
+    {
+        foreach(var item in list)
+        {
+            Console.Write(item + " ");
+        }
+        Console.WriteLine();
+    }
+}
+#endregion 
